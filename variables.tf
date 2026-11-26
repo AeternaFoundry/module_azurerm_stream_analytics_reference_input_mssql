@@ -118,14 +118,6 @@ EOT
   validation {
     condition = alltrue([
       for k, v in var.stream_analytics_reference_input_mssqls : (
-        v.refresh_interval_duration == null || (length(v.refresh_interval_duration) > 0)
-      )
-    ])
-    error_message = "[from validate.BatchMaxWaitTime: invalid when value == \"\"]"
-  }
-  validation {
-    condition = alltrue([
-      for k, v in var.stream_analytics_reference_input_mssqls : (
         length(v.full_snapshot_query) > 0
       )
     ])
@@ -147,6 +139,6 @@ EOT
     ])
     error_message = "must not be empty"
   }
-  # Note: 3 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
+  # Note: 2 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
 }
 
